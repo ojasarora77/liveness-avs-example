@@ -115,7 +115,7 @@ npm install -g @othentic/othentic-cli
 
 2. Clone the repo and switch branch
 ```
-git clone https://github.com/Othentic-Labs/avs-examples.git
+git clone https://github.com/Othentic-Labs/liveliness-avs-example.git
 cd liveliness-avs-example
 ```
 
