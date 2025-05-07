@@ -1,4 +1,4 @@
-# 🍀 Liveliness AVS
+# 🍀 Liveness AVS
 
 Liveliness AVS is a service that monitors Operator availability and maintains a dynamic reputation system to ensure reliability across AVSs.
 
