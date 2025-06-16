@@ -7,3 +7,6 @@
 [submodule "liveliness-avs-example/contracts/lib/contracts"]
 	path = liveliness-avs-example/contracts/lib/contracts
 	url = https://github.com/Othentic-Labs/contracts
+[submodule "lib/openzeppelin-contracts"]
+	path = lib/openzeppelin-contracts
+	url = https://github.com/OpenZeppelin/openzeppelin-contracts
