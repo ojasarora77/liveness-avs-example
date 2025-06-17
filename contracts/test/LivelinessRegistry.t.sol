@@ -9,10 +9,10 @@ import { IAvsLogic } from "../src/interfaces/IAvsLogic.sol";
 import { ExposedLivelinessRegistry } from "test/exposes/ExposedLivelinessRegistry.sol";
 
 contract Shared is CommonBase, StdCheats {
-    event OperatorRegistered(address operator, string endpoint);
-    event OperatorUnregistered(address operator);
-    event OperatorChangedEndpoint(address operator, string endpoint);
-    event OperatorPenalized(address operator);
+    event AgentRegistered(address operator, string endpoint);
+    event AgentUnregistered(address operator);
+    event AgentEndpointChanged(address operator, string endpoint);
+    event AgentPenalized(address operator);
 
     error OperatorInAVS();
     error OperatorNotInAVS();
@@ -59,12 +59,12 @@ contract Register is Test, Shared {
         );
 
         vm.expectEmit(address(registry));
-        emit OperatorRegistered(OPERATOR, "endpoint");
+        emit AgentRegistered(OPERATOR, "endpoint");
         vm.roll(BLOCK_NUMBER);
         vm.prank(OPERATOR);
-        registry.register("endpoint");
+        registry.registerAgent("endpoint");
 
-        (uint256 operatorIndex, uint256 blockNumber, string memory endpoint) = registry.registrations(OPERATOR);
+        (uint256 operatorIndex, uint256 blockNumber, string memory endpoint,,,,,) = registry.agentRegistrations(OPERATOR);
         assertEq(operatorIndex, OPERATOR_INDEX);
         assertEq(blockNumber, BLOCK_NUMBER);
         assertEq(endpoint, "endpoint");
@@ -79,7 +79,7 @@ contract Register is Test, Shared {
 
         vm.expectRevert(OperatorNotInAVS.selector);
         vm.prank(OPERATOR);
-        registry.register("endpoint");
+        registry.registerAgent("endpoint");
     }
 
     function test_registerTwice_revert() public {
@@ -91,11 +91,11 @@ contract Register is Test, Shared {
 
         vm.roll(BLOCK_NUMBER);
         vm.prank(OPERATOR);
-        registry.register("endpoint");
+        registry.registerAgent("endpoint");
 
         vm.expectRevert(OperatorIsRegistered.selector);
         vm.prank(OPERATOR);
-        registry.register("endpoint");
+        registry.registerAgent("endpoint");
     }
 }
 
@@ -113,7 +113,7 @@ contract Unregister is Test, Shared {
 
         vm.roll(BLOCK_NUMBER);
         vm.prank(OPERATOR);
-        registry.register("endpoint");
+        registry.registerAgent("endpoint");
 
         vm.mockCall(
             address(ATTESTATION_CENTER), 
@@ -122,11 +122,11 @@ contract Unregister is Test, Shared {
         );
 
         vm.expectEmit(address(registry));
-        emit OperatorUnregistered(OPERATOR);
+        emit AgentUnregistered(OPERATOR);
         vm.prank(OPERATOR);
         registry.unregister();
 
-        (uint256 operatorIndex, uint256 blockNumber, string memory endpoint) = registry.registrations(OPERATOR);
+        (uint256 operatorIndex, uint256 blockNumber, string memory endpoint,,,,,) = registry.agentRegistrations(OPERATOR);
         assertEq(operatorIndex, 0);
         assertEq(blockNumber, 0);
         assertEq(endpoint, "");
@@ -153,7 +153,7 @@ contract Unregister is Test, Shared {
 
         vm.roll(BLOCK_NUMBER);
         vm.prank(OPERATOR);
-        registry.register("endpoint");
+        registry.registerAgent("endpoint");
 
         vm.expectRevert(OperatorInAVS.selector);
         vm.prank(OPERATOR);
@@ -175,14 +175,14 @@ contract ChangeEndpoint is Test, Shared {
 
         vm.roll(BLOCK_NUMBER);
         vm.prank(OPERATOR);
-        registry.register("endpoint");
+        registry.registerAgent("endpoint");
 
         vm.expectEmit(address(registry));
-        emit OperatorChangedEndpoint(OPERATOR, "newEndpoint");
+        emit AgentEndpointChanged(OPERATOR, "newEndpoint");
         vm.prank(OPERATOR);
-        registry.changeEndpoint("newEndpoint");
+        registry.changeAgentEndpoint("newEndpoint");
 
-        (uint256 operatorIndex, uint256 blockNumber, string memory endpoint) = registry.registrations(OPERATOR);
+        (uint256 operatorIndex, uint256 blockNumber, string memory endpoint,,,,,) = registry.agentRegistrations(OPERATOR);
         assertEq(operatorIndex, OPERATOR_INDEX);
         assertEq(blockNumber, BLOCK_NUMBER);
         assertEq(endpoint, "newEndpoint");
@@ -191,7 +191,7 @@ contract ChangeEndpoint is Test, Shared {
     function test_operatorNotRegistered_revert() public {
         vm.expectRevert(OperatorNotRegistered.selector);
         vm.prank(OUTSIDER);
-        registry.changeEndpoint("newEndpoint");
+        registry.changeAgentEndpoint("newEndpoint");
     }   
 }
 
@@ -210,13 +210,13 @@ contract AfterTaskSubmission is Test, Shared {
 
         vm.roll(BLOCK_NUMBER);
         vm.prank(OPERATOR);
-        registry.register("endpoint");
+        registry.registerAgent("endpoint");
 
         bytes memory data = abi.encode(OPERATOR, false);
         IAttestationCenter.TaskInfo memory taskInfo = IAttestationCenter.TaskInfo("", data, PERFORMER, 0);
         uint256[] memory operatorIds = new uint256[](0);
         vm.expectEmit(address(registry));
-        emit OperatorPenalized(OPERATOR);
+        emit AgentPenalized(OPERATOR);
         vm.prank(address(ATTESTATION_CENTER));
         registry.afterTaskSubmission(taskInfo, true, "", [uint256(0), uint256(0)], operatorIds);
 
@@ -233,7 +233,7 @@ contract AfterTaskSubmission is Test, Shared {
 
         vm.roll(BLOCK_NUMBER);
         vm.prank(OPERATOR);
-        registry.register("endpoint");
+        registry.registerAgent("endpoint");
 
         bytes memory data = abi.encode(OPERATOR, true);
         IAttestationCenter.TaskInfo memory taskInfo = IAttestationCenter.TaskInfo("", data, PERFORMER, 0);
@@ -254,7 +254,7 @@ contract AfterTaskSubmission is Test, Shared {
 
         vm.roll(BLOCK_NUMBER);
         vm.prank(OPERATOR);
-        registry.register("endpoint");
+        registry.registerAgent("endpoint");
 
         bytes memory data = abi.encode(OPERATOR, true);
         IAttestationCenter.TaskInfo memory taskInfo = IAttestationCenter.TaskInfo("", data, PERFORMER, 0);
@@ -288,7 +288,7 @@ contract GetLivelinessScore is Test, Shared {
 
         vm.roll(BLOCK_NUMBER);
         vm.prank(OPERATOR);
-        registry.register("endpoint");
+        registry.registerAgent("endpoint");
 
         vm.roll(BLOCK_NUMBER + 1234);
         uint256 livelinessScore = registry.getLivelinessScore(OPERATOR);
@@ -304,7 +304,7 @@ contract GetLivelinessScore is Test, Shared {
 
         vm.roll(BLOCK_NUMBER);
         vm.prank(OPERATOR);
-        registry.register("endpoint");
+        registry.registerAgent("endpoint");
 
         // use of helper function from exposed
         registry.setOperatorPenalites(OPERATOR, 2);
@@ -323,7 +323,7 @@ contract GetLivelinessScore is Test, Shared {
 
         vm.roll(BLOCK_NUMBER);
         vm.prank(OPERATOR);
-        registry.register("endpoint");
+        registry.registerAgent("endpoint");
 
         // use of helper function from exposed
         registry.setOperatorPenalites(OPERATOR, 1);

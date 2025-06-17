@@ -1,0 +1,882 @@
+{
+    "contracts": {
+        "/Users/ojasarora/Documents/GitHub/Hackathons/liveness-avs-example/contracts/src/interfaces/IAgentTrustRegistry.sol": {
+            "IAgentTrustRegistry": {
+                "abi": [
+                    {
+                        "anonymous": false,
+                        "inputs": [
+                            {
+                                "indexed": false,
+                                "internalType": "address",
+                                "name": "agent",
+                                "type": "address"
+                            },
+                            {
+                                "indexed": false,
+                                "internalType": "string",
+                                "name": "endpoint",
+                                "type": "string"
+                            }
+                        ],
+                        "name": "AgentEndpointChanged",
+                        "type": "event"
+                    },
+                    {
+                        "anonymous": false,
+                        "inputs": [
+                            {
+                                "indexed": false,
+                                "internalType": "address",
+                                "name": "agent",
+                                "type": "address"
+                            },
+                            {
+                                "indexed": false,
+                                "internalType": "uint8",
+                                "name": "reason",
+                                "type": "uint8"
+                            }
+                        ],
+                        "name": "AgentPenalized",
+                        "type": "event"
+                    },
+                    {
+                        "anonymous": false,
+                        "inputs": [
+                            {
+                                "indexed": false,
+                                "internalType": "address",
+                                "name": "agent",
+                                "type": "address"
+                            },
+                            {
+                                "indexed": false,
+                                "internalType": "string",
+                                "name": "endpoint",
+                                "type": "string"
+                            }
+                        ],
+                        "name": "AgentRegistered",
+                        "type": "event"
+                    },
+                    {
+                        "anonymous": false,
+                        "inputs": [
+                            {
+                                "indexed": false,
+                                "internalType": "address",
+                                "name": "agent",
+                                "type": "address"
+                            }
+                        ],
+                        "name": "AgentUnregistered",
+                        "type": "event"
+                    },
+                    {
+                        "inputs": [
+                            {
+                                "internalType": "string",
+                                "name": "endpoint",
+                                "type": "string"
+                            }
+                        ],
+                        "name": "changeAgentEndpoint",
+                        "outputs": [],
+                        "stateMutability": "nonpayable",
+                        "type": "function"
+                    },
+                    {
+                        "inputs": [
+                            {
+                                "internalType": "address",
+                                "name": "agent",
+                                "type": "address"
+                            }
+                        ],
+                        "name": "getScoreComponents",
+                        "outputs": [
+                            {
+                                "internalType": "uint8",
+                                "name": "provenance",
+                                "type": "uint8"
+                            },
+                            {
+                                "internalType": "uint8",
+                                "name": "performance",
+                                "type": "uint8"
+                            },
+                            {
+                                "internalType": "uint8",
+                                "name": "perception",
+                                "type": "uint8"
+                            }
+                        ],
+                        "stateMutability": "view",
+                        "type": "function"
+                    },
+                    {
+                        "inputs": [
+                            {
+                                "internalType": "address",
+                                "name": "agent",
+                                "type": "address"
+                            }
+                        ],
+                        "name": "getTrustScore",
+                        "outputs": [
+                            {
+                                "internalType": "uint256",
+                                "name": "",
+                                "type": "uint256"
+                            }
+                        ],
+                        "stateMutability": "view",
+                        "type": "function"
+                    },
+                    {
+                        "inputs": [
+                            {
+                                "internalType": "string",
+                                "name": "endpoint",
+                                "type": "string"
+                            }
+                        ],
+                        "name": "registerAgent",
+                        "outputs": [],
+                        "stateMutability": "nonpayable",
+                        "type": "function"
+                    },
+                    {
+                        "inputs": [],
+                        "name": "unregisterAgent",
+                        "outputs": [],
+                        "stateMutability": "nonpayable",
+                        "type": "function"
+                    }
+                ],
+                "devdoc": {
+                    "kind": "dev",
+                    "methods": {},
+                    "version": 1
+                },
+                "evm": {
+                    "bytecode": {
+                        "functionDebugData": {},
+                        "generatedSources": [],
+                        "linkReferences": {},
+                        "object": "",
+                        "opcodes": "",
+                        "sourceMap": ""
+                    },
+                    "deployedBytecode": {
+                        "functionDebugData": {},
+                        "generatedSources": [],
+                        "immutableReferences": {},
+                        "linkReferences": {},
+                        "object": "",
+                        "opcodes": "",
+                        "sourceMap": ""
+                    },
+                    "gasEstimates": null,
+                    "methodIdentifiers": {
+                        "changeAgentEndpoint(string)": "bdf5e518",
+                        "getScoreComponents(address)": "e5222d0b",
+                        "getTrustScore(address)": "5e09eea1",
+                        "registerAgent(string)": "2d2a9585",
+                        "unregisterAgent()": "e31f1a7c"
+                    }
+                },
+                "metadata": "{\"compiler\":{\"version\":\"0.8.20+commit.a1b79de6\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"agent\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"endpoint\",\"type\":\"string\"}],\"name\":\"AgentEndpointChanged\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"agent\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint8\",\"name\":\"reason\",\"type\":\"uint8\"}],\"name\":\"AgentPenalized\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"agent\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"endpoint\",\"type\":\"string\"}],\"name\":\"AgentRegistered\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"agent\",\"type\":\"address\"}],\"name\":\"AgentUnregistered\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"endpoint\",\"type\":\"string\"}],\"name\":\"changeAgentEndpoint\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"agent\",\"type\":\"address\"}],\"name\":\"getScoreComponents\",\"outputs\":[{\"internalType\":\"uint8\",\"name\":\"provenance\",\"type\":\"uint8\"},{\"internalType\":\"uint8\",\"name\":\"performance\",\"type\":\"uint8\"},{\"internalType\":\"uint8\",\"name\":\"perception\",\"type\":\"uint8\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"agent\",\"type\":\"address\"}],\"name\":\"getTrustScore\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"endpoint\",\"type\":\"string\"}],\"name\":\"registerAgent\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"unregisterAgent\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"/Users/ojasarora/Documents/GitHub/Hackathons/liveness-avs-example/contracts/src/interfaces/IAgentTrustRegistry.sol\":\"IAgentTrustRegistry\"},\"evmVersion\":\"shanghai\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[],\"viaIR\":true},\"sources\":{\"/Users/ojasarora/Documents/GitHub/Hackathons/liveness-avs-example/contracts/src/interfaces/IAgentTrustRegistry.sol\":{\"keccak256\":\"0xd3bfc9b6e5e5a2014c408378bc6141745b037638f03594a356da60b751dfde9a\",\"license\":\"BUSL-1.1\",\"urls\":[\"bzz-raw://93d328428941ccca083d1aa2483d68ef632f61a06d053775525d0702ca98ea35\",\"dweb:/ipfs/QmSq4gFuV3GGRzWjh1F4dTMVzAPq72Skd4sxX8b9zBgJxv\"]}},\"version\":1}",
+                "storageLayout": {
+                    "storage": [],
+                    "types": null
+                },
+                "userdoc": {
+                    "kind": "user",
+                    "methods": {},
+                    "version": 1
+                }
+            }
+        }
+    },
+    "sources": {
+        "/Users/ojasarora/Documents/GitHub/Hackathons/liveness-avs-example/contracts/src/interfaces/IAgentTrustRegistry.sol": {
+            "ast": {
+                "absolutePath": "/Users/ojasarora/Documents/GitHub/Hackathons/liveness-avs-example/contracts/src/interfaces/IAgentTrustRegistry.sol",
+                "exportedSymbols": {
+                    "IAgentTrustRegistry": [
+                        55
+                    ]
+                },
+                "id": 56,
+                "license": "BUSL-1.1",
+                "nodeType": "SourceUnit",
+                "nodes": [
+                    {
+                        "id": 1,
+                        "literals": [
+                            "solidity",
+                            ">=",
+                            "0.8",
+                            ".20"
+                        ],
+                        "nodeType": "PragmaDirective",
+                        "src": "37:25:0"
+                    },
+                    {
+                        "abstract": false,
+                        "baseContracts": [],
+                        "canonicalName": "IAgentTrustRegistry",
+                        "contractDependencies": [],
+                        "contractKind": "interface",
+                        "fullyImplemented": false,
+                        "id": 55,
+                        "linearizedBaseContracts": [
+                            55
+                        ],
+                        "name": "IAgentTrustRegistry",
+                        "nameLocation": "74:19:0",
+                        "nodeType": "ContractDefinition",
+                        "nodes": [
+                            {
+                                "anonymous": false,
+                                "eventSelector": "da816ca2fc37b9eecec62ae8263008ec6be1afb38dc28bc9c7c51d7e348da9c2",
+                                "id": 7,
+                                "name": "AgentRegistered",
+                                "nameLocation": "106:15:0",
+                                "nodeType": "EventDefinition",
+                                "parameters": {
+                                    "id": 6,
+                                    "nodeType": "ParameterList",
+                                    "parameters": [
+                                        {
+                                            "constant": false,
+                                            "id": 3,
+                                            "indexed": false,
+                                            "mutability": "mutable",
+                                            "name": "agent",
+                                            "nameLocation": "130:5:0",
+                                            "nodeType": "VariableDeclaration",
+                                            "scope": 7,
+                                            "src": "122:13:0",
+                                            "stateVariable": false,
+                                            "storageLocation": "default",
+                                            "typeDescriptions": {
+                                                "typeIdentifier": "t_address",
+                                                "typeString": "address"
+                                            },
+                                            "typeName": {
+                                                "id": 2,
+                                                "name": "address",
+                                                "nodeType": "ElementaryTypeName",
+                                                "src": "122:7:0",
+                                                "stateMutability": "nonpayable",
+                                                "typeDescriptions": {
+                                                    "typeIdentifier": "t_address",
+                                                    "typeString": "address"
+                                                }
+                                            },
+                                            "visibility": "internal"
+                                        },
+                                        {
+                                            "constant": false,
+                                            "id": 5,
+                                            "indexed": false,
+                                            "mutability": "mutable",
+                                            "name": "endpoint",
+                                            "nameLocation": "144:8:0",
+                                            "nodeType": "VariableDeclaration",
+                                            "scope": 7,
+                                            "src": "137:15:0",
+                                            "stateVariable": false,
+                                            "storageLocation": "default",
+                                            "typeDescriptions": {
+                                                "typeIdentifier": "t_string_memory_ptr",
+                                                "typeString": "string"
+                                            },
+                                            "typeName": {
+                                                "id": 4,
+                                                "name": "string",
+                                                "nodeType": "ElementaryTypeName",
+                                                "src": "137:6:0",
+                                                "typeDescriptions": {
+                                                    "typeIdentifier": "t_string_storage_ptr",
+                                                    "typeString": "string"
+                                                }
+                                            },
+                                            "visibility": "internal"
+                                        }
+                                    ],
+                                    "src": "121:32:0"
+                                },
+                                "src": "100:54:0"
+                            },
+                            {
+                                "anonymous": false,
+                                "eventSelector": "3e085cc53b86c19e2e6dba628297af6b8f76c89d1384dbcc599bab2adfd62d08",
+                                "id": 11,
+                                "name": "AgentUnregistered",
+                                "nameLocation": "165:17:0",
+                                "nodeType": "EventDefinition",
+                                "parameters": {
+                                    "id": 10,
+                                    "nodeType": "ParameterList",
+                                    "parameters": [
+                                        {
+                                            "constant": false,
+                                            "id": 9,
+                                            "indexed": false,
+                                            "mutability": "mutable",
+                                            "name": "agent",
+                                            "nameLocation": "191:5:0",
+                                            "nodeType": "VariableDeclaration",
+                                            "scope": 11,
+                                            "src": "183:13:0",
+                                            "stateVariable": false,
+                                            "storageLocation": "default",
+                                            "typeDescriptions": {
+                                                "typeIdentifier": "t_address",
+                                                "typeString": "address"
+                                            },
+                                            "typeName": {
+                                                "id": 8,
+                                                "name": "address",
+                                                "nodeType": "ElementaryTypeName",
+                                                "src": "183:7:0",
+                                                "stateMutability": "nonpayable",
+                                                "typeDescriptions": {
+                                                    "typeIdentifier": "t_address",
+                                                    "typeString": "address"
+                                                }
+                                            },
+                                            "visibility": "internal"
+                                        }
+                                    ],
+                                    "src": "182:15:0"
+                                },
+                                "src": "159:39:0"
+                            },
+                            {
+                                "anonymous": false,
+                                "eventSelector": "729bedfbd37f20b09221febb39f0dc1284e01633cbad1dcf1cd37aca4abfa437",
+                                "id": 17,
+                                "name": "AgentEndpointChanged",
+                                "nameLocation": "209:20:0",
+                                "nodeType": "EventDefinition",
+                                "parameters": {
+                                    "id": 16,
+                                    "nodeType": "ParameterList",
+                                    "parameters": [
+                                        {
+                                            "constant": false,
+                                            "id": 13,
+                                            "indexed": false,
+                                            "mutability": "mutable",
+                                            "name": "agent",
+                                            "nameLocation": "238:5:0",
+                                            "nodeType": "VariableDeclaration",
+                                            "scope": 17,
+                                            "src": "230:13:0",
+                                            "stateVariable": false,
+                                            "storageLocation": "default",
+                                            "typeDescriptions": {
+                                                "typeIdentifier": "t_address",
+                                                "typeString": "address"
+                                            },
+                                            "typeName": {
+                                                "id": 12,
+                                                "name": "address",
+                                                "nodeType": "ElementaryTypeName",
+                                                "src": "230:7:0",
+                                                "stateMutability": "nonpayable",
+                                                "typeDescriptions": {
+                                                    "typeIdentifier": "t_address",
+                                                    "typeString": "address"
+                                                }
+                                            },
+                                            "visibility": "internal"
+                                        },
+                                        {
+                                            "constant": false,
+                                            "id": 15,
+                                            "indexed": false,
+                                            "mutability": "mutable",
+                                            "name": "endpoint",
+                                            "nameLocation": "252:8:0",
+                                            "nodeType": "VariableDeclaration",
+                                            "scope": 17,
+                                            "src": "245:15:0",
+                                            "stateVariable": false,
+                                            "storageLocation": "default",
+                                            "typeDescriptions": {
+                                                "typeIdentifier": "t_string_memory_ptr",
+                                                "typeString": "string"
+                                            },
+                                            "typeName": {
+                                                "id": 14,
+                                                "name": "string",
+                                                "nodeType": "ElementaryTypeName",
+                                                "src": "245:6:0",
+                                                "typeDescriptions": {
+                                                    "typeIdentifier": "t_string_storage_ptr",
+                                                    "typeString": "string"
+                                                }
+                                            },
+                                            "visibility": "internal"
+                                        }
+                                    ],
+                                    "src": "229:32:0"
+                                },
+                                "src": "203:59:0"
+                            },
+                            {
+                                "anonymous": false,
+                                "eventSelector": "4be0d3739f794e715042e57d807ccd2e8afdefb37650bcffeec2e5530b802338",
+                                "id": 23,
+                                "name": "AgentPenalized",
+                                "nameLocation": "273:14:0",
+                                "nodeType": "EventDefinition",
+                                "parameters": {
+                                    "id": 22,
+                                    "nodeType": "ParameterList",
+                                    "parameters": [
+                                        {
+                                            "constant": false,
+                                            "id": 19,
+                                            "indexed": false,
+                                            "mutability": "mutable",
+                                            "name": "agent",
+                                            "nameLocation": "296:5:0",
+                                            "nodeType": "VariableDeclaration",
+                                            "scope": 23,
+                                            "src": "288:13:0",
+                                            "stateVariable": false,
+                                            "storageLocation": "default",
+                                            "typeDescriptions": {
+                                                "typeIdentifier": "t_address",
+                                                "typeString": "address"
+                                            },
+                                            "typeName": {
+                                                "id": 18,
+                                                "name": "address",
+                                                "nodeType": "ElementaryTypeName",
+                                                "src": "288:7:0",
+                                                "stateMutability": "nonpayable",
+                                                "typeDescriptions": {
+                                                    "typeIdentifier": "t_address",
+                                                    "typeString": "address"
+                                                }
+                                            },
+                                            "visibility": "internal"
+                                        },
+                                        {
+                                            "constant": false,
+                                            "id": 21,
+                                            "indexed": false,
+                                            "mutability": "mutable",
+                                            "name": "reason",
+                                            "nameLocation": "309:6:0",
+                                            "nodeType": "VariableDeclaration",
+                                            "scope": 23,
+                                            "src": "303:12:0",
+                                            "stateVariable": false,
+                                            "storageLocation": "default",
+                                            "typeDescriptions": {
+                                                "typeIdentifier": "t_uint8",
+                                                "typeString": "uint8"
+                                            },
+                                            "typeName": {
+                                                "id": 20,
+                                                "name": "uint8",
+                                                "nodeType": "ElementaryTypeName",
+                                                "src": "303:5:0",
+                                                "typeDescriptions": {
+                                                    "typeIdentifier": "t_uint8",
+                                                    "typeString": "uint8"
+                                                }
+                                            },
+                                            "visibility": "internal"
+                                        }
+                                    ],
+                                    "src": "287:29:0"
+                                },
+                                "src": "267:50:0"
+                            },
+                            {
+                                "functionSelector": "5e09eea1",
+                                "id": 30,
+                                "implemented": false,
+                                "kind": "function",
+                                "modifiers": [],
+                                "name": "getTrustScore",
+                                "nameLocation": "406:13:0",
+                                "nodeType": "FunctionDefinition",
+                                "parameters": {
+                                    "id": 26,
+                                    "nodeType": "ParameterList",
+                                    "parameters": [
+                                        {
+                                            "constant": false,
+                                            "id": 25,
+                                            "mutability": "mutable",
+                                            "name": "agent",
+                                            "nameLocation": "428:5:0",
+                                            "nodeType": "VariableDeclaration",
+                                            "scope": 30,
+                                            "src": "420:13:0",
+                                            "stateVariable": false,
+                                            "storageLocation": "default",
+                                            "typeDescriptions": {
+                                                "typeIdentifier": "t_address",
+                                                "typeString": "address"
+                                            },
+                                            "typeName": {
+                                                "id": 24,
+                                                "name": "address",
+                                                "nodeType": "ElementaryTypeName",
+                                                "src": "420:7:0",
+                                                "stateMutability": "nonpayable",
+                                                "typeDescriptions": {
+                                                    "typeIdentifier": "t_address",
+                                                    "typeString": "address"
+                                                }
+                                            },
+                                            "visibility": "internal"
+                                        }
+                                    ],
+                                    "src": "419:15:0"
+                                },
+                                "returnParameters": {
+                                    "id": 29,
+                                    "nodeType": "ParameterList",
+                                    "parameters": [
+                                        {
+                                            "constant": false,
+                                            "id": 28,
+                                            "mutability": "mutable",
+                                            "name": "",
+                                            "nameLocation": "-1:-1:-1",
+                                            "nodeType": "VariableDeclaration",
+                                            "scope": 30,
+                                            "src": "458:7:0",
+                                            "stateVariable": false,
+                                            "storageLocation": "default",
+                                            "typeDescriptions": {
+                                                "typeIdentifier": "t_uint256",
+                                                "typeString": "uint256"
+                                            },
+                                            "typeName": {
+                                                "id": 27,
+                                                "name": "uint256",
+                                                "nodeType": "ElementaryTypeName",
+                                                "src": "458:7:0",
+                                                "typeDescriptions": {
+                                                    "typeIdentifier": "t_uint256",
+                                                    "typeString": "uint256"
+                                                }
+                                            },
+                                            "visibility": "internal"
+                                        }
+                                    ],
+                                    "src": "457:9:0"
+                                },
+                                "scope": 55,
+                                "src": "397:70:0",
+                                "stateMutability": "view",
+                                "virtual": false,
+                                "visibility": "external"
+                            },
+                            {
+                                "functionSelector": "2d2a9585",
+                                "id": 35,
+                                "implemented": false,
+                                "kind": "function",
+                                "modifiers": [],
+                                "name": "registerAgent",
+                                "nameLocation": "481:13:0",
+                                "nodeType": "FunctionDefinition",
+                                "parameters": {
+                                    "id": 33,
+                                    "nodeType": "ParameterList",
+                                    "parameters": [
+                                        {
+                                            "constant": false,
+                                            "id": 32,
+                                            "mutability": "mutable",
+                                            "name": "endpoint",
+                                            "nameLocation": "509:8:0",
+                                            "nodeType": "VariableDeclaration",
+                                            "scope": 35,
+                                            "src": "495:22:0",
+                                            "stateVariable": false,
+                                            "storageLocation": "memory",
+                                            "typeDescriptions": {
+                                                "typeIdentifier": "t_string_memory_ptr",
+                                                "typeString": "string"
+                                            },
+                                            "typeName": {
+                                                "id": 31,
+                                                "name": "string",
+                                                "nodeType": "ElementaryTypeName",
+                                                "src": "495:6:0",
+                                                "typeDescriptions": {
+                                                    "typeIdentifier": "t_string_storage_ptr",
+                                                    "typeString": "string"
+                                                }
+                                            },
+                                            "visibility": "internal"
+                                        }
+                                    ],
+                                    "src": "494:24:0"
+                                },
+                                "returnParameters": {
+                                    "id": 34,
+                                    "nodeType": "ParameterList",
+                                    "parameters": [],
+                                    "src": "527:0:0"
+                                },
+                                "scope": 55,
+                                "src": "472:56:0",
+                                "stateMutability": "nonpayable",
+                                "virtual": false,
+                                "visibility": "external"
+                            },
+                            {
+                                "functionSelector": "e31f1a7c",
+                                "id": 38,
+                                "implemented": false,
+                                "kind": "function",
+                                "modifiers": [],
+                                "name": "unregisterAgent",
+                                "nameLocation": "542:15:0",
+                                "nodeType": "FunctionDefinition",
+                                "parameters": {
+                                    "id": 36,
+                                    "nodeType": "ParameterList",
+                                    "parameters": [],
+                                    "src": "557:2:0"
+                                },
+                                "returnParameters": {
+                                    "id": 37,
+                                    "nodeType": "ParameterList",
+                                    "parameters": [],
+                                    "src": "568:0:0"
+                                },
+                                "scope": 55,
+                                "src": "533:36:0",
+                                "stateMutability": "nonpayable",
+                                "virtual": false,
+                                "visibility": "external"
+                            },
+                            {
+                                "functionSelector": "bdf5e518",
+                                "id": 43,
+                                "implemented": false,
+                                "kind": "function",
+                                "modifiers": [],
+                                "name": "changeAgentEndpoint",
+                                "nameLocation": "583:19:0",
+                                "nodeType": "FunctionDefinition",
+                                "parameters": {
+                                    "id": 41,
+                                    "nodeType": "ParameterList",
+                                    "parameters": [
+                                        {
+                                            "constant": false,
+                                            "id": 40,
+                                            "mutability": "mutable",
+                                            "name": "endpoint",
+                                            "nameLocation": "617:8:0",
+                                            "nodeType": "VariableDeclaration",
+                                            "scope": 43,
+                                            "src": "603:22:0",
+                                            "stateVariable": false,
+                                            "storageLocation": "memory",
+                                            "typeDescriptions": {
+                                                "typeIdentifier": "t_string_memory_ptr",
+                                                "typeString": "string"
+                                            },
+                                            "typeName": {
+                                                "id": 39,
+                                                "name": "string",
+                                                "nodeType": "ElementaryTypeName",
+                                                "src": "603:6:0",
+                                                "typeDescriptions": {
+                                                    "typeIdentifier": "t_string_storage_ptr",
+                                                    "typeString": "string"
+                                                }
+                                            },
+                                            "visibility": "internal"
+                                        }
+                                    ],
+                                    "src": "602:24:0"
+                                },
+                                "returnParameters": {
+                                    "id": 42,
+                                    "nodeType": "ParameterList",
+                                    "parameters": [],
+                                    "src": "635:0:0"
+                                },
+                                "scope": 55,
+                                "src": "574:62:0",
+                                "stateMutability": "nonpayable",
+                                "virtual": false,
+                                "visibility": "external"
+                            },
+                            {
+                                "functionSelector": "e5222d0b",
+                                "id": 54,
+                                "implemented": false,
+                                "kind": "function",
+                                "modifiers": [],
+                                "name": "getScoreComponents",
+                                "nameLocation": "695:18:0",
+                                "nodeType": "FunctionDefinition",
+                                "parameters": {
+                                    "id": 46,
+                                    "nodeType": "ParameterList",
+                                    "parameters": [
+                                        {
+                                            "constant": false,
+                                            "id": 45,
+                                            "mutability": "mutable",
+                                            "name": "agent",
+                                            "nameLocation": "722:5:0",
+                                            "nodeType": "VariableDeclaration",
+                                            "scope": 54,
+                                            "src": "714:13:0",
+                                            "stateVariable": false,
+                                            "storageLocation": "default",
+                                            "typeDescriptions": {
+                                                "typeIdentifier": "t_address",
+                                                "typeString": "address"
+                                            },
+                                            "typeName": {
+                                                "id": 44,
+                                                "name": "address",
+                                                "nodeType": "ElementaryTypeName",
+                                                "src": "714:7:0",
+                                                "stateMutability": "nonpayable",
+                                                "typeDescriptions": {
+                                                    "typeIdentifier": "t_address",
+                                                    "typeString": "address"
+                                                }
+                                            },
+                                            "visibility": "internal"
+                                        }
+                                    ],
+                                    "src": "713:15:0"
+                                },
+                                "returnParameters": {
+                                    "id": 53,
+                                    "nodeType": "ParameterList",
+                                    "parameters": [
+                                        {
+                                            "constant": false,
+                                            "id": 48,
+                                            "mutability": "mutable",
+                                            "name": "provenance",
+                                            "nameLocation": "767:10:0",
+                                            "nodeType": "VariableDeclaration",
+                                            "scope": 54,
+                                            "src": "761:16:0",
+                                            "stateVariable": false,
+                                            "storageLocation": "default",
+                                            "typeDescriptions": {
+                                                "typeIdentifier": "t_uint8",
+                                                "typeString": "uint8"
+                                            },
+                                            "typeName": {
+                                                "id": 47,
+                                                "name": "uint8",
+                                                "nodeType": "ElementaryTypeName",
+                                                "src": "761:5:0",
+                                                "typeDescriptions": {
+                                                    "typeIdentifier": "t_uint8",
+                                                    "typeString": "uint8"
+                                                }
+                                            },
+                                            "visibility": "internal"
+                                        },
+                                        {
+                                            "constant": false,
+                                            "id": 50,
+                                            "mutability": "mutable",
+                                            "name": "performance",
+                                            "nameLocation": "794:11:0",
+                                            "nodeType": "VariableDeclaration",
+                                            "scope": 54,
+                                            "src": "788:17:0",
+                                            "stateVariable": false,
+                                            "storageLocation": "default",
+                                            "typeDescriptions": {
+                                                "typeIdentifier": "t_uint8",
+                                                "typeString": "uint8"
+                                            },
+                                            "typeName": {
+                                                "id": 49,
+                                                "name": "uint8",
+                                                "nodeType": "ElementaryTypeName",
+                                                "src": "788:5:0",
+                                                "typeDescriptions": {
+                                                    "typeIdentifier": "t_uint8",
+                                                    "typeString": "uint8"
+                                                }
+                                            },
+                                            "visibility": "internal"
+                                        },
+                                        {
+                                            "constant": false,
+                                            "id": 52,
+                                            "mutability": "mutable",
+                                            "name": "perception",
+                                            "nameLocation": "822:10:0",
+                                            "nodeType": "VariableDeclaration",
+                                            "scope": 54,
+                                            "src": "816:16:0",
+                                            "stateVariable": false,
+                                            "storageLocation": "default",
+                                            "typeDescriptions": {
+                                                "typeIdentifier": "t_uint8",
+                                                "typeString": "uint8"
+                                            },
+                                            "typeName": {
+                                                "id": 51,
+                                                "name": "uint8",
+                                                "nodeType": "ElementaryTypeName",
+                                                "src": "816:5:0",
+                                                "typeDescriptions": {
+                                                    "typeIdentifier": "t_uint8",
+                                                    "typeString": "uint8"
+                                                }
+                                            },
+                                            "visibility": "internal"
+                                        }
+                                    ],
+                                    "src": "751:87:0"
+                                },
+                                "scope": 55,
+                                "src": "686:153:0",
+                                "stateMutability": "view",
+                                "virtual": false,
+                                "visibility": "external"
+                            }
+                        ],
+                        "scope": 56,
+                        "src": "64:777:0",
+                        "usedErrors": [],
+                        "usedEvents": [
+                            7,
+                            11,
+                            17,
+                            23
+                        ]
+                    }
+                ],
+                "src": "37:804:0"
+            },
+            "id": 0
+        }
+    }
+}

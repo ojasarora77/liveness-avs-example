@@ -1,0 +1,19 @@
+[profile.default]
+src = "src"
+out = "out"
+libs = ["lib"]
+remappings = [
+    "@openzeppelin/contracts/=lib/openzeppelin-contracts/contracts/",
+    "erc4626-tests/=lib/openzeppelin-contracts/lib/erc4626-tests/",
+    "forge-std/=lib/openzeppelin-contracts/lib/forge-std/src/",
+    "halmos-cheatcodes/=lib/openzeppelin-contracts/lib/halmos-cheatcodes/src/",
+    "openzeppelin-contracts/=lib/openzeppelin-contracts/",
+]
+
+# See more config options https://github.com/foundry-rs/foundry/blob/master/crates/config/README.md#all-options
+
+[rpc_endpoints]
+mantle_sepolia = "https://rpc.sepolia.mantle.xyz"
+
+[etherscan]
+mantle_sepolia = { key = "${MANTLESCAN_API_KEY}", url = "https://explorer.sepolia.mantle.xyz/api" }
